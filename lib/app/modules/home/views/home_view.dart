@@ -30,24 +30,6 @@ class HomeView extends GetView<HomeController> {
                 onTap: () => controller.webViewController.reload(),
               ),
               SpeedDialChild(
-                child: const Icon(Icons.change_circle),
-                label: 'Tes Suara',
-                backgroundColor: const Color(0XFF194798),
-                onTap: () => controller.speak("Tes suara satu, dua, tiga"),
-              ),
-              SpeedDialChild(
-                child: const Icon(Icons.settings),
-                label: 'Pengaturan TTS',
-                backgroundColor: const Color(0XFFCAE5F6),
-                onTap: () => controller.openTTSSettings(),
-              ),
-              SpeedDialChild(
-                child: const Icon(Icons.download),
-                label: 'Unduh TTS',
-                backgroundColor: Colors.white,
-                onTap: () => controller.downloadTTSEngine(),
-              ),
-              SpeedDialChild(
                 child: const Icon(Icons.camera),
                 label: 'Camera',
                 backgroundColor: Colors.orange,
