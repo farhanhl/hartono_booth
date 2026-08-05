@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:hartono_booth/app/modules/home/models/config_model.dart';
 import 'package:flutter/material.dart';
@@ -51,17 +53,18 @@ class HomeController extends GetxController with WidgetsBindingObserver {
       }
     }
 
-    isLoading = false;
-    update();
-
     if (initError == null) {
       await _setupAfterConfig();
       await handleAppOpen();
     }
+
+    isLoading = false;
+    update();
   }
 
   Future<void> _fetchConfig() async {
     configModel = await services.getAppConfig();
+    log(jsonEncode(configModel));
   }
 
   @override
@@ -119,6 +122,7 @@ class HomeController extends GetxController with WidgetsBindingObserver {
     } catch (e) {
       print("⚠️ Observer already added: $e");
     }
+    print(webUrl);
   }
 
   @override
@@ -144,6 +148,7 @@ class HomeController extends GetxController with WidgetsBindingObserver {
 
   Future<void> handleAppOpen() async {
     changeAppRequest = ChangeAppStatusRequest(deviceId: deviceId, status: 1);
+    log(jsonEncode(changeAppRequest));
     try {
       await services.handleAppStatus(changeAppRequest);
       print("✅ Status aplikasi: OPEN");
